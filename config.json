@@ -1,0 +1,20 @@
+{
+  "params":
+  {
+    "local_server": "True",
+    "local_uri": "mysql://root:@localhost/flask1",
+    "prod_uri": "mysql://root:@localhost/flask1",
+    "fb_url": "https://facebook.com/flask1",
+    "tw_url": "https://twitter.com/flask1",
+    "gh_url": "https://github.com/flask1",
+    "gmail-user": "jaynarutomistry@gmail.com",
+    "gmail-password": "Naruto@123",
+    "mysql_host": "localhost",
+    "mysql_user": "root",
+    "mysql_pass": "",
+    "mysql_db": "flaskapp"
+  },
+  "env": {
+    "FLASK_APP": "khojapp.webapp"
+}
+}
