@@ -16,7 +16,7 @@ config = {
 }
 firebase=pyrebase.initialize_app(config)
 db=firebase.database()
-
+#comments added
 
 def mail_func(rec,msg):
     sender = "khoj.alerts@gmail.com"
