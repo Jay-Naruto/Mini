@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>KHOJ</title>
+<!-- 
+Moonlight Template 
+https://templatemo.com/tm-512-moonlight
+-->
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap-theme.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/fontAwesome.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/light-box.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/templatemo-main.css')}}">
+
+
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+        <script src="{{url_for('static',filename='js/vendor/modernizr-2.8.3-respond-1.4.2.min.js')}}"></script>
+<style>
+    .marginTOP
+    {
+    margin-top:15px;
+    }
+    .marginTOP2
+    {
+    margin-top:54px;
+    }
+    .radiowidth
+    {
+    width:20%;
+    }
+    input[type="radio"] {
+    -ms-transform: scale(0.5); /* IE 9 */
+    -webkit-transform: scale(0.5); /* Chrome, Safari, Opera */
+    transform: scale(0s.5);
+}
+</style>
+    </head>
+
+<body>
+    
+    <div class="sequence">
+  
+      <div class="seq-preloader">
+        <svg width="39" height="16" viewBox="0 0 39 16" xmlns="http://www.w3.org/2000/svg" class="seq-preload-indicator"><g fill="#F96D38"><path class="seq-preload-circle seq-preload-circle-1" d="M3.999 12.012c2.209 0 3.999-1.791 3.999-3.999s-1.79-3.999-3.999-3.999-3.999 1.791-3.999 3.999 1.79 3.999 3.999 3.999z"/><path class="seq-preload-circle seq-preload-circle-2" d="M15.996 13.468c3.018 0 5.465-2.447 5.465-5.466 0-3.018-2.447-5.465-5.465-5.465-3.019 0-5.466 2.447-5.466 5.465 0 3.019 2.447 5.466 5.466 5.466z"/><path class="seq-preload-circle seq-preload-circle-3" d="M31.322 15.334c4.049 0 7.332-3.282 7.332-7.332 0-4.049-3.282-7.332-7.332-7.332s-7.332 3.283-7.332 7.332c0 4.05 3.283 7.332 7.332 7.332z"/></g></svg>
+      </div>
+      
+    </div>
+    
+  
+        <nav>
+          <div class="logo">
+              <img src="{{url_for('static',filename='img/KHOJ1.jpg')}}" width="60%" alt="">
+          </div>
+          <div class="mini-logo">
+              <img src="{{url_for('static',filename='img/MINI.png')}}" alt="">
+          </div>
+          <ul>
+           <!-- <li><a href="#1"><i class="fa fa-home"></i> <em>Home</em></a></li>
+            <li><a href="#3"><i class="fa fa-pencil"></i> <em>New Alert</em></a></li>
+            <li><a href="#4"><i class="fa fa-image"></i> <em>Records</em></a></li>
+               <li><a href="#2"><i class="fa fa-user"></i> <em>Contact ks</em></a></li>
+               -->
+
+              <li><a href="#1"><i class="fa fa-home"></i> <em>Home</em></a></li>
+            <li><a href="#2"><i class="fa fa-user"></i> <em>New Alert</em></a></li>
+            <li><a href="#3"><i class="fa fa-pencil"></i> <em>Records</em></a></li>
+              <li><a href="#5"><i class="fa fa-image"></i> <em>Not Yet</em></a></li>
+
+          </ul>
+        </nav>
+        
+        <div class="slides">
+          <div class="slide" id="1">
+            <div class="content first-content">
+              <div class="container-fluid">
+                  <div class="col-md-3">
+                      <div class="author-image"><img src="{{url_for('static',filename='img/author.jfif')}}" alt="Author Image"></div>
+
+                  </div>
+
+                  <div class="col-md-9">
+                      <h2>KHOJ</h2>
+                      <p>The application of MARS (Missing Alert and Report System) will connect the people in an area through emails and messages and to notify them about any missing reports in that area. This system will have a record of the contact numbers and email ids of people according to their addresses. These details will be used to send them alerts about missing cases in their area. In the ‘New Alert’ section the user can enter the details of the missing child along with  a recent photograph. This section will also take from user two contact numbers. The emails sent by the system will have all the details of the missing child along with the photograph that is uploaded by the parent/guardian. The text messages sent by the system will have the name of the missing child.</p>
+                      <!--
+                      <div class="main-btn"><a href="#2">Read More</a></div>
+                      <div class="fb-btn"><a rel="nofollow" href="https://fb.com/templatemo">Our FB Page</a></div>
+                      -->
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="slide" id="2">
+            <div class="content fifth-content">
+                <form id="contact" method="post">
+                <div class="container-fluid">
+
+                    <div class="col-md-12">
+                        <div class="row">
+                          <div class="col-sm-6">
+
+                            <div class="row marginTOP">
+
+                                <div class="col-md-12">
+                                     <h3 style="color:white;">Register</h3>
+                                  <fieldset>
+                                    <input id="fname" name="fname" type="text" class="form-control"  placeholder="Your full name...">
+
+                                  </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                  <fieldset>
+                                    <input name="email" type="email" class="form-control" id="email" placeholder="Your email...">
+                                  </fieldset>
+                                </div>
+                                 <div class="col-md-12">
+                                  <fieldset>
+                                    <input name="MobileNo" type="number" class="form-control" id="MobileNo" placeholder="Mobile No...">
+                                  </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                  <fieldset>
+                                    <label for="dateofbirth" style="color:white"></label>
+                                 <input type="date" name="dateofbirth" id="dateofbirth">
+                                  </fieldset>
+                                </div>
+                                <div class="col-md-7">
+                                      <fieldset>
+
+                                    <input type="text" name="State" placeholder="State">
+                                          <input type="text" name="City" placeholder="City">
+                                          <input type="number" name="Pincode" placeholder="Pincode">
+                                      </fieldset>
+                                </div>
+
+                            </div>
+
+                    </div>
+
+
+               <div class="col-sm-6">
+
+                            <div class="row marginTOP2">
+
+                                <div class="col-md-12 row-sm-6 radiowidth">
+
+
+                                     <label class="radio-inline" style="color:white" >Male
+                                          <input type="radio" name="optradio" id="Male" value="Male">
+                                        </label>
+                                        <label class="radio-inline" style="color:white">Female
+                                          <input type="radio" name="optradio" id="Female" value="Female">
+                                        </label>
+                                        <label class="radio-inline" style="color:white">Others
+                                          <input type="radio" name="optradio" id="Others" value="Others">
+                                        </label>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="col-md-7">
+                                  <fieldset>
+                                    <input name="Age" type="text" class="form-control" id="Age" placeholder="Age..." required="">
+                                    <input name="Height" type="text" class="form-control" id="Height" placeholder="Height (ft)..." required="">
+                                  </fieldset>
+                                        </div>
+                                </div>
+                                <div class="col-md-12">
+                                  <fieldset>
+                                    <textarea name="Description" rows="6" class="form-control" id="Description" placeholder="Description..." required=""></textarea>
+                                  </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                  <fieldset>
+                                    <button type="submit" id="form-submit21" class="btn">Alert Everyone</button>
+                                  </fieldset>
+                                </div>
+                            </div>
+
+                    </div>
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+                    </form>
+            </div>
+          </div>
+          <div class="slide" id="3">
+            <div class="content fourth-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Number One</h2>
+
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Number Two</h2>
+
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Number Three</h2>
+
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Number Four</h2>
+
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Number Fifth</h2>
+
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Number Sixth </h2>
+
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Number Seven</h2>
+
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Number Eight</h2>
+
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Number Nine</h2>
+
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Number Ten</h2>
+
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Number Eleven</h2>
+
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h2>Number Twelve</h2>
+
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="footer">
+          <div class="content">
+
+          </div>
+        </div>
+ 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{{url_for('static',filename='js/vendor/jquery-1.11.2.min.js')}}"><\/script>')</script>
+
+    <script src="{{url_for('static',filename='js/vendor/bootstrap.min.js')}}"></script>
+    
+    <script src="{{url_for('static',filename='js/datepicker.js')}}"></script>
+    <script src="{{url_for('static',filename='js/plugins.js')}}"></script>
+    <script src="{{url_for('static',filename='js/main.js')}}"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+        
+
+        // navigation click actions 
+        $('.scroll-link').on('click', function(event){
+            event.preventDefault();
+            var sectionID = $(this).attr("data-id");
+            scrollToID('#' + sectionID, 750);
+        });
+        // scroll to top action
+        $('.scroll-top').on('click', function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop:0}, 'slow');         
+        });
+        // mobile nav toggle
+        $('#nav-toggle').on('click', function (event) {
+            event.preventDefault();
+            $('#main-nav').toggleClass("open");
+        });
+    });
+    // scroll function
+    function scrollToID(id, speed){
+        var offSet = 0;
+        var targetOffset = $(id).offset().top - offSet;
+        var mainNav = $('#main-nav');
+        $('html,body').animate({scrollTop:targetOffset}, speed);
+        if (mainNav.hasClass("open")) {
+            mainNav.css("height", "1px").removeClass("in").addClass("collapse");
+            mainNav.removeClass("open");
+        }
+    }
+    if (typeof console === "undefined") {
+        console = {
+            log: function() { }
+        };
+    }
+    </script>
+</body>
+</html>
