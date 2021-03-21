@@ -17,11 +17,13 @@ https://templatemo.com/tm-512-moonlight
         <link rel="stylesheet" href="{{url_for('static',filename='css/fontAwesome.css')}}">
         <link rel="stylesheet" href="{{url_for('static',filename='css/light-box.css')}}">
         <link rel="stylesheet" href="{{url_for('static',filename='css/templatemo-main.css')}}">
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-
+        <script src="{{url_for('static',filename='js/cities.js')}}"></script>
         <script src="{{url_for('static',filename='js/vendor/modernizr-2.8.3-respond-1.4.2.min.js')}}"></script>
 <style>
     .marginTOP
@@ -32,16 +34,37 @@ https://templatemo.com/tm-512-moonlight
     {
     margin-top:54px;
     }
-    .radiowidth
-    {
-    width:20%;
-    }
+
     input[type="radio"] {
-    -ms-transform: scale(0.5); /* IE 9 */
-    -webkit-transform: scale(0.5); /* Chrome, Safari, Opera */
+    -ms-transform: scale(0.4); /* IE 9 */
+    -webkit-transform: scale(0.4); /* Chrome, Safari, Opera */
     transform: scale(0s.5);
+
+}
 }
 </style>
+        <script>
+            var down = document.getElementById('dateofbirth');
+
+        function gfg() {
+            var date =
+                document.getElementById('date').value;
+
+            var inpDate = new Date(date);
+            var currDate = new Date();
+
+            if(inpDate.setHours(0, 0, 0, 0) ==
+                    currDate.setHours(0, 0, 0, 0))
+            {
+                down.innerHTML =
+                    "The input date is today's date";
+            }
+            else {
+                down.innerHTML = "The input date is"
+                    + " different from today's date";
+            }
+        }
+        </script>
     </head>
 
 <body>
@@ -123,7 +146,7 @@ https://templatemo.com/tm-512-moonlight
                                 </div>
                                  <div class="col-md-12">
                                   <fieldset>
-                                    <input name="MobileNo" type="number" class="form-control" id="MobileNo" placeholder="Mobile No...">
+                                    <input name="MobileNo" type="tel" class="form-control" id="MobileNo" placeholder="1234567890" pattern="[0-9]{10}" required="">
                                   </fieldset>
                                 </div>
                                 <div class="col-md-12">
@@ -132,11 +155,14 @@ https://templatemo.com/tm-512-moonlight
                                  <input type="date" name="dateofbirth" id="dateofbirth">
                                   </fieldset>
                                 </div>
-                                <div class="col-md-7">
-                                      <fieldset>
+                                   <div class="col-md-12">
+                                <select  onchange="print_city('state', this.selectedIndex);" id="sts" name ="stt" class="form-control" required=""></select>
+                                <select id ="state" class="form-control" name="stt2" required=""></select>
+                                <script language="javascript">print_state("sts");</script>
+                                 </div>
 
-                                    <input type="text" name="State" placeholder="State">
-                                          <input type="text" name="City" placeholder="City">
+                                <div class="col-md-7">
+                                      <fieldset class="marginTOP">
                                           <input type="number" name="Pincode" placeholder="Pincode">
                                       </fieldset>
                                 </div>
@@ -146,37 +172,41 @@ https://templatemo.com/tm-512-moonlight
                     </div>
 
 
-               <div class="col-sm-6">
+               <div class="col-md-12">
 
-                            <div class="row marginTOP2">
+                            <div class="row">
 
-                                <div class="col-md-12 row-sm-6 radiowidth">
-
-
-                                     <label class="radio-inline" style="color:white" >Male
-                                          <input type="radio" name="optradio" id="Male" value="Male">
+                                <div class="row-md-12">
+                                    <form>
+                                        <label class="radio-inline" style="color:white;">
+                                          <input type="radio" name="optradio"   checked>Male
                                         </label>
-                                        <label class="radio-inline" style="color:white">Female
-                                          <input type="radio" name="optradio" id="Female" value="Female">
+                                        <label class="radio-inline" style="color:white;">
+                                          <input type="radio" name="optradio"  >Female
                                         </label>
-                                        <label class="radio-inline" style="color:white">Others
-                                          <input type="radio" name="optradio" id="Others" value="Others">
+                                        <label class="radio-inline" style="color:white;">
+                                          <input type="radio" name="optradio" >Others
                                         </label>
+                                      </form><br>
+
+
+
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="col-md-7">
+                                <div class="col-sm-6 marginTOP">
+
                                   <fieldset>
                                     <input name="Age" type="text" class="form-control" id="Age" placeholder="Age..." required="">
                                     <input name="Height" type="text" class="form-control" id="Height" placeholder="Height (ft)..." required="">
                                   </fieldset>
-                                        </div>
+
                                 </div>
                                 <div class="col-md-12">
                                   <fieldset>
                                     <textarea name="Description" rows="6" class="form-control" id="Description" placeholder="Description..." required=""></textarea>
+                                        <input name="file" type="file">
                                   </fieldset>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-sm-6">
                                   <fieldset>
                                     <button type="submit" id="form-submit21" class="btn">Alert Everyone</button>
                                   </fieldset>
@@ -192,7 +222,7 @@ https://templatemo.com/tm-512-moonlight
                     </div>
 
                 </div>
-                    </form>
+             </form>
             </div>
           </div>
           <div class="slide" id="3">
@@ -440,6 +470,8 @@ https://templatemo.com/tm-512-moonlight
             log: function() { }
         };
     }
+}
+
     </script>
 </body>
 </html>
