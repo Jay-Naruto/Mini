@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -47,8 +47,31 @@ https://templatemo.com/tm-512-moonlight
         <script>
 
 
+
          document.getElementById('dateofbirth').value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
 }
+
+             var down = document.getElementById('dateofbirth');
+
+        function gfg() {
+            var date =
+                document.getElementById('date').value;
+
+            var inpDate = new Date(date);
+            var currDate = new Date();
+
+            if(inpDate.setHours(0, 0, 0, 0) ==
+                      currDate.setHours(0, 0, 0, 0))
+            {
+                down.innerHTML =
+                    "The input date is today's date";
+            }
+            else {
+                down.innerHTML = "The input date is"
+                    + " different from today's date";
+            }
+        }
+
         </script>
     </head>
 
