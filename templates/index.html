@@ -28,7 +28,7 @@ https://templatemo.com/tm-512-moonlight
 <style>
     .marginTOP
     {
-    margin-top:15px;
+    margin-top:25px;
     }
     .marginTOP2
     {
@@ -42,28 +42,13 @@ https://templatemo.com/tm-512-moonlight
 
 }
 }
+
 </style>
         <script>
-            var down = document.getElementById('dateofbirth');
 
-        function gfg() {
-            var date =
-                document.getElementById('date').value;
 
-            var inpDate = new Date(date);
-            var currDate = new Date();
-
-            if(inpDate.setHours(0, 0, 0, 0) ==
-                    currDate.setHours(0, 0, 0, 0))
-            {
-                down.innerHTML =
-                    "The input date is today's date";
-            }
-            else {
-                down.innerHTML = "The input date is"
-                    + " different from today's date";
-            }
-        }
+         document.getElementById('dateofbirth').value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+}
         </script>
     </head>
 
@@ -130,18 +115,18 @@ https://templatemo.com/tm-512-moonlight
                         <div class="row">
                           <div class="col-sm-6">
 
-                            <div class="row marginTOP">
+                            <div class="row">
 
                                 <div class="col-md-12">
                                      <h3 style="color:white;">Register</h3>
                                   <fieldset>
-                                    <input id="fname" name="fname" type="text" class="form-control"  placeholder="Your full name...">
+                                    <input id="fname" name="fname" type="text" class="form-control"  placeholder="Your full name..." required="">
 
                                   </fieldset>
                                 </div>
                                 <div class="col-md-12">
                                   <fieldset>
-                                    <input name="email" type="email" class="form-control" id="email" placeholder="Your email...">
+                                    <input name="email" type="email" class="form-control" id="email" placeholder="Your email..." required="">
                                   </fieldset>
                                 </div>
                                  <div class="col-md-12">
@@ -152,7 +137,7 @@ https://templatemo.com/tm-512-moonlight
                                 <div class="col-md-12">
                                   <fieldset>
                                     <label for="dateofbirth" style="color:white"></label>
-                                 <input type="date" name="dateofbirth" id="dateofbirth">
+                                 <input type="date" name="dateofbirth" id="dateofbirth" required="">
                                   </fieldset>
                                 </div>
                                    <div class="col-md-12">
@@ -163,7 +148,7 @@ https://templatemo.com/tm-512-moonlight
 
                                 <div class="col-md-7">
                                       <fieldset class="marginTOP">
-                                          <input type="number" name="Pincode" placeholder="Pincode">
+                                          <input type="text" name="Pincode" placeholder="Pincode" pattern="[0-9]{6}" maxlength="6" title="Eg: 400087" required>
                                       </fieldset>
                                 </div>
 
@@ -176,9 +161,10 @@ https://templatemo.com/tm-512-moonlight
 
                             <div class="row">
 
-                                <div class="row-md-12">
+                                <div class="col-md-6" style="align-items:flex-start; margin-top: 50px;">
+
                                     <form>
-                                        <label class="radio-inline" style="color:white;">
+                                        <label title="Gender" class="radio-inline" style="color:white;">
                                           <input type="radio" name="optradio"   checked>Male
                                         </label>
                                         <label class="radio-inline" style="color:white;">

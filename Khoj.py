@@ -17,7 +17,7 @@ config = {
 }
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
-
+allCats = db.child("Users").shallow().get()
 
 
 # comments added
@@ -45,15 +45,16 @@ def print2():
     return render_template('signup.html', params=params)
 
 
-
 @app.route("/", methods=['GET', 'POST'])
 def print3():
+    if request.method == 'POST' or request.method == 'GET':
+        if request.form.get('loginmobile') == allCats:
+           pass
     return render_template('login.html', params=params)
 
 
 @app.route("/index", methods=['GET', 'POST'])
 def print4():
-
     if request.method == 'POST':
         data2 = {
             "Email": request.form.get('email'),
@@ -67,8 +68,8 @@ def print4():
 
         db.child("Alert").child(str(request.form.get('fname'))).set(data2)
         mail_func(request.form.get('email'), (
-                    request.form.get('fname') + "\n" + request.form.get('MobileNo') + "\n" + request.form.get(
-                'stt') + "\n" + request.form.get('optradio')))
+                request.form.get('fname') + "\n" + request.form.get('MobileNo') + "\n" + request.form.get(
+            'stt') + "\n" + request.form.get('optradio')))
     return render_template('index.html', params=params)
 
 

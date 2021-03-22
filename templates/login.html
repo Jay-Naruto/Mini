@@ -119,25 +119,23 @@ margin-left: 4px;
 			<div class="card-header">
 				<h3>Sign In</h3>
 				<div class="d-flex justify-content-end social_icon">
-					<span><i class="fab fa-facebook-square"></i></span>
-					<span><i class="fab fa-google-plus-square"></i></span>
-					<span><i class="fab fa-twitter-square"></i></span>
+
 				</div>
 			</div>
 			<div class="card-body">
-				<form>
+				<form action="get">
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" name="loginname" class="form-control" placeholder="username" required="">
+						<input type="text" name="loginname" class="form-control" placeholder="username" required>
 
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" name="loginmobile" class="form-control" placeholder="Mobile" required="">
+						<input type="password" name="loginmobile" class="form-control" placeholder="Mobile" pattern="[0-9]{10}" required>
 					</div>
 
 					<div class="form-group">
