@@ -1,9 +1,12 @@
+from random import randint
+
 import params as params
 import pyrebase
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
 import smtplib
+
 # hello
-#hh
+# hhn
 app = Flask(__name__, template_folder='templates')
 
 config = {
@@ -18,11 +21,18 @@ config = {
 }
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
-allCats = db.child("Users").shallow().get()
+authe = firebase.auth()
+
+# for user in users.each():
+# print(user.val())
 
 
 # comments added
 # hfhfhfhhfhf
+var = randint(100000, 999999)
+email_first = ""
+mobile = ""
+
 
 def mail_func(rec, msg):
     sender = "khoj.alerts@gmail.com"
@@ -33,24 +43,65 @@ def mail_func(rec, msg):
     server.sendmail(sender, rec, msg)
     print("done")
 
+@app.route("/first", methods=['GET', 'POST'])
+def print0():
+    if request.method == 'POST':
+        try:
+            global email_first
+            mail_func(request.form.get('Verify'),str(var))
+            email_first = str(request.form.get('Verify'))
+            return render_template('OTP.html', params=params)
+        except:
+            return render_template('First.html', params=params)
+    return render_template('First.html', params=params)
+
+@app.route("/otp", methods=['GET', 'POST'])
+def print1():
+    if request.method == 'POST':
+        if request.form.get('OTP') == str(var):
+             return render_template('signup.html', params=params)
+    return render_template('OTP.html', params=params)
+
 
 @app.route("/signup", methods=['GET', 'POST'])
 def print2():
-    if request.method == 'POST' or request.method == 'GET':
-        data3 = {
-            "FullName": request.form.get('FullName'),
-            "Mobile": request.form.get('Mobile'), "Password": request.form.get('Confirm')
-        }
+    if request.method == 'POST':
 
-        db.child("Users").child(str(request.form.get('Mobile'))).set(data3)
+        PA = request.form.get('Confirm')
+        try:
+            xd = authe.create_user_with_email_and_password(email_first, PA)
+            print(xd)
+
+            #return render_template('index.html', params=params)
+
+            data3 = {
+                "FullName": request.form.get('FullName'),
+                "Email": email_first,
+                "Mobile": request.form.get('Mobile'), "Password": request.form.get('Confirm')
+            }
+            db.child("Users").child(str(request.form.get('Mobile'))).set(data3)
+        except:
+            return render_template('signup.html', params=params)
     return render_template('signup.html', params=params)
 
 
 @app.route("/", methods=['GET', 'POST'])
 def print3():
-    if request.method == 'POST' or request.method == 'GET':
-        if request.form.get('loginmobile') == allCats:
-           pass
+    if request.method == 'POST':
+        email_t = request.form.get('loginemail')
+        password_t = request.form.get('loginpass')
+
+        try:
+
+            authe.sign_in_with_email_and_password(email_t, password_t)
+            # authe.send_email_verification(user['idToken'])
+            users = db.child("Users").order_by_child("Mobile").equal_to('password_t').get()
+            for user in users.each():
+                print(user.val()['Mobile'])
+            return render_template('index.html', params=params)
+        except:
+            return render_template('login.html', params=params)
+
     return render_template('login.html', params=params)
 
 
@@ -74,5 +125,7 @@ def print4():
     return render_template('index.html', params=params)
 
 
-app.run(debug=True)
+if __name__ == "__main__":
+    app.secret_key = 'some secret key'
+    app.run(debug=True)
 # mysqlclient @ file:///C:/Users/LENOVO/Downloads/mysqlclient-1.4.6-cp39-cp39-win_amd64.whl
