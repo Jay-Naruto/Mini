@@ -23,15 +23,8 @@ firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 authe = firebase.auth()
 
-# for user in users.each():
-# print(user.val())
-
-
-# comments added
-# hfhfhfhhfhf
 var = randint(100000, 999999)
 email_first = ""
-mobile = ""
 
 
 def mail_func(rec, msg):
@@ -43,23 +36,26 @@ def mail_func(rec, msg):
     server.sendmail(sender, rec, msg)
     print("done")
 
+
 @app.route("/first", methods=['GET', 'POST'])
 def print0():
     if request.method == 'POST':
         try:
             global email_first
-            mail_func(request.form.get('Verify'),str(var))
+            mail_func(request.form.get('Verify'), str(var))
             email_first = str(request.form.get('Verify'))
+            print(email_first)
             return render_template('OTP.html', params=params)
         except:
             return render_template('First.html', params=params)
     return render_template('First.html', params=params)
 
+
 @app.route("/otp", methods=['GET', 'POST'])
 def print1():
     if request.method == 'POST':
         if request.form.get('OTP') == str(var):
-             return render_template('signup.html', params=params)
+            return render_template('signup.html', params=params)
     return render_template('OTP.html', params=params)
 
 
@@ -67,36 +63,36 @@ def print1():
 def print2():
     if request.method == 'POST':
 
-        PA = request.form.get('Confirm')
+        PA = str(request.form.get('Confirm'))
+        data3 = {
+            "FullName": request.form.get('FullName'),
+            "Email": email_first,
+            "Mobile": request.form.get('Mobile'),
+            "Password": request.form.get('Confirm')
+        }
         try:
-            xd = authe.create_user_with_email_and_password(email_first, PA)
-            print(xd)
+            authe.create_user_with_email_and_password(email_first, PA)
+            print("hdhdh")
 
-            #return render_template('index.html', params=params)
 
-            data3 = {
-                "FullName": request.form.get('FullName'),
-                "Email": email_first,
-                "Mobile": request.form.get('Mobile'), "Password": request.form.get('Confirm')
-            }
-            db.child("Users").child(str(request.form.get('Mobile'))).set(data3)
+            db.child("Users").child(str(request.form.get('FullName'))).set(data3)
+
         except:
             return render_template('signup.html', params=params)
+
     return render_template('signup.html', params=params)
 
 
 @app.route("/", methods=['GET', 'POST'])
 def print3():
     if request.method == 'POST':
-        email_t = request.form.get('loginemail')
-        password_t = request.form.get('loginpass')
+        email_t = str(request.form.get('loginemail'))
+        password_t = str(request.form.get('loginpass'))
 
         try:
 
             authe.sign_in_with_email_and_password(email_t, password_t)
-            # authe.send_email_verification(user['idToken'])
-
-
+            # print(xd)
             return render_template('index.html', params=params)
         except:
             return render_template('login.html', params=params)
@@ -118,11 +114,12 @@ def print4():
         }
         try:
             db.child("Alert").child(str(request.form.get('fname'))).set(data2)
-            mail_func(request.form.get('email'), ( request.form.get('fname') + "\n" + request.form.get('MobileNo') + "\n" + request.form.get(
-                'stt') + "\n" + request.form.get('optradio')))
+            mail_func(request.form.get('email'),
+                      (request.form.get('fname') + "\n" + request.form.get('MobileNo') + "\n" + request.form.get(
+                          'stt') + "\n" + request.form.get('optradio')))
         except:
-            return render_template('index.html', params=params)
-        return render_template('index.html', params=params)
+            return render_template('Error.html', params=params)
+
     return render_template('index.html', params=params)
 
 
