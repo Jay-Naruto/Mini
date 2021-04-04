@@ -95,9 +95,8 @@ def print3():
 
             authe.sign_in_with_email_and_password(email_t, password_t)
             # authe.send_email_verification(user['idToken'])
-            users = db.child("Users").order_by_child("Mobile").equal_to('password_t').get()
-            for user in users.each():
-                print(user.val()['Mobile'])
+
+
             return render_template('index.html', params=params)
         except:
             return render_template('login.html', params=params)
@@ -117,11 +116,13 @@ def print4():
             "Description": request.form.get('Description'),
             "Image": request.form.get('file')
         }
-
-        db.child("Alert").child(str(request.form.get('fname'))).set(data2)
-        mail_func(request.form.get('email'), (
-                request.form.get('fname') + "\n" + request.form.get('MobileNo') + "\n" + request.form.get(
-            'stt') + "\n" + request.form.get('optradio')))
+        try:
+            db.child("Alert").child(str(request.form.get('fname'))).set(data2)
+            mail_func(request.form.get('email'), ( request.form.get('fname') + "\n" + request.form.get('MobileNo') + "\n" + request.form.get(
+                'stt') + "\n" + request.form.get('optradio')))
+        except:
+            return render_template('index.html', params=params)
+        return render_template('index.html', params=params)
     return render_template('index.html', params=params)
 
 
