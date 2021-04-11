@@ -1,5 +1,6 @@
 from random import randint
-
+import os
+import tempfile
 import params as params
 import pyrebase
 from flask import Flask, render_template, request, flash
@@ -25,6 +26,8 @@ authe = firebase.auth()
 
 var = randint(100000, 999999)
 email_first = ""
+gmobile = ""
+lst2 = []
 
 
 def mail_func(rec, msg):
@@ -64,21 +67,23 @@ def print2():
     if request.method == 'POST':
 
         PA = str(request.form.get('Confirm'))
-        data3 = {
-            "FullName": request.form.get('FullName'),
-            "Email": email_first,
-            "Mobile": request.form.get('Mobile'),
-            "Password": request.form.get('Confirm')
-        }
+
         try:
-            authe.create_user_with_email_and_password(email_first, PA)
-            print("hdhdh")
 
+            xd = authe.create_user_with_email_and_password(email_first, PA)
+            print(xd)
 
-            db.child("Users").child(str(request.form.get('FullName'))).set(data3)
+            # return render_template('index.html', params=params)
 
+            data3 = {
+                "FullName": request.form.get('FullName'),
+                "Email": email_first,
+                "Mobile": request.form.get('Mobile'),
+                "Password": request.form.get('Confirm'),
+            }
+            db.child("Users").child(str(request.form.get('Mobile'))).set(data3)
         except:
-            return render_template('signup.html', params=params)
+            return render_template('Error.html', params=params)
 
     return render_template('signup.html', params=params)
 
@@ -86,6 +91,8 @@ def print2():
 @app.route("/", methods=['GET', 'POST'])
 def print3():
     if request.method == 'POST':
+        lst = []
+
         email_t = str(request.form.get('loginemail'))
         password_t = str(request.form.get('loginpass'))
 
@@ -93,9 +100,19 @@ def print3():
 
             authe.sign_in_with_email_and_password(email_t, password_t)
             # print(xd)
-            return render_template('index.html', params=params)
+            users = db.child('Alert').order_by_child('FullName').get()
+            for user in users.each():
+                lst.append({"FullName": user.val()['FullName'],
+                            "Age": user.val()['Age'],
+                            "Height": user.val()['Height'],
+                            "City": user.val()['City'],
+                            "State": user.val()['State'],
+                            "MobileNo": user.val()['MobileNo']
+                            })
+
+            return render_template('index.html', params=params, lst=lst)
         except:
-            return render_template('login.html', params=params)
+            return render_template('Error.html', params=params)
 
     return render_template('login.html', params=params)
 
@@ -103,7 +120,10 @@ def print3():
 @app.route("/index", methods=['GET', 'POST'])
 def print4():
     if request.method == 'POST':
+        global lst2
+
         data2 = {
+            "FullName": request.form.get('fname'),
             "Email": request.form.get('email'),
             "MobileNo": request.form.get('MobileNo'), "DOB": request.form.get('dateofbirth'),
             "State": request.form.get('stt'), "City": request.form.get('stt2'),
@@ -113,10 +133,29 @@ def print4():
             "Image": request.form.get('file')
         }
         try:
-            db.child("Alert").child(str(request.form.get('fname'))).set(data2)
+            db.child("Alert").child(str(request.form.get('MobileNo'))).set(data2)
             mail_func(request.form.get('email'),
-                      (request.form.get('fname') + "\n" + request.form.get('MobileNo') + "\n" + request.form.get(
-                          'stt') + "\n" + request.form.get('optradio')))
+                      (request.form.get('fname')
+                       + "\n" + request.form.get('MobileNo')
+                       + "\n" + request.form.get('stt')
+                       + "\n" + request.form.get('optradio')))
+            users = db.child('Alert').order_by_child('FullName').get()
+
+            for user in users.each():
+                if (user.val()['FullName']):
+                    # fullname_d = user.val()['FullName']
+                    # Age_d = user.val()['Age']
+                    # Height_d = user.val()['Height']
+                    # Pincode_d = user.val()['Pincode']
+                    # Shop_m = user.val()['Shop Name']
+                    lst2.append({"FullName": user.val()['FullName'],
+                                 "Age": user.val()['Age'],
+                                 "Height": user.val()['Height'],
+                                 "City": user.val()['City'],
+                                 "State": user.val()['State'],
+                                 "MobileNo": user.val()['MobileNo']
+                                 })
+            return render_template('index.html', params=params, lst=lst2)
         except:
             return render_template('Error.html', params=params)
 
@@ -127,3 +166,6 @@ if __name__ == "__main__":
     app.secret_key = 'some secret key'
     app.run(debug=True)
 # mysqlclient @ file:///C:/Users/LENOVO/Downloads/mysqlclient-1.4.6-cp39-cp39-win_amd64.whl
+
+
+#  @message_api.route('/messenger/message/send/picture/individual', methods=['post'])

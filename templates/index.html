@@ -240,12 +240,20 @@ https://templatemo.com/tm-512-moonlight
             <div class="content fourth-content">
                 <div class="container-fluid">
                     <div class="row">
+
+                         {% for stock in lst %}
                         <div class="col-md-4 col-sm-6">
                             <div class="item">
                                 <div class="thumb">
                                     <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
                                         <div class="hover-content">
-                                            <h2>Number One</h2>
+                                            <h2>{{stock.FullName}}</h2>
+                                            <p>Age:{{stock.Age}} </p>
+                                            <p>Height:{{stock.Height}}</p>
+                                            <p>City:{{stock.State}}</p>
+                                            <p>State:{{stock.State}}</p>
+                                            <p>Contact:{{stock.MobileNo}}</p>
+
 
                                         </div>
                                     </div></a>
@@ -255,171 +263,8 @@ https://templatemo.com/tm-512-moonlight
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="item">
-                                <div class="thumb">
-                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
-                                        <div class="hover-content">
-                                            <h2>Number Two</h2>
+                           {% endfor %}
 
-                                        </div>
-                                    </div></a>
-                                    <div class="image">
-                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="item">
-                                <div class="thumb">
-                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
-                                        <div class="hover-content">
-                                            <h2>Number Three</h2>
-
-                                        </div>
-                                    </div></a>
-                                    <div class="image">
-                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="item">
-                                <div class="thumb">
-                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
-                                        <div class="hover-content">
-                                            <h2>Number Four</h2>
-
-                                        </div>
-                                    </div></a>
-                                    <div class="image">
-                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="item">
-                                <div class="thumb">
-                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
-                                        <div class="hover-content">
-                                            <h2>Number Fifth</h2>
-
-                                        </div>
-                                    </div></a>
-                                    <div class="image">
-                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="item">
-                                <div class="thumb">
-                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
-                                        <div class="hover-content">
-                                            <h2>Number Sixth </h2>
-
-                                        </div>
-                                    </div></a>
-                                    <div class="image">
-                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="item">
-                                <div class="thumb">
-                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
-                                        <div class="hover-content">
-                                            <h2>Number Seven</h2>
-
-                                        </div>
-                                    </div></a>
-                                    <div class="image">
-                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="item">
-                                <div class="thumb">
-                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
-                                        <div class="hover-content">
-                                            <h2>Number Eight</h2>
-
-                                        </div>
-                                    </div></a>
-                                    <div class="image">
-                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="item">
-                                <div class="thumb">
-                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
-                                        <div class="hover-content">
-                                            <h2>Number Nine</h2>
-
-                                        </div>
-                                    </div></a>
-                                    <div class="image">
-                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="item">
-                                <div class="thumb">
-                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
-                                        <div class="hover-content">
-                                            <h2>Number Ten</h2>
-
-                                        </div>
-                                    </div></a>
-                                    <div class="image">
-                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="item">
-                                <div class="thumb">
-                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
-                                        <div class="hover-content">
-                                            <h2>Number Eleven</h2>
-
-                                        </div>
-                                    </div></a>
-                                    <div class="image">
-                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="item">
-                                <div class="thumb">
-                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
-                                        <div class="hover-content">
-                                            <h2>Number Twelve</h2>
-
-                                        </div>
-                                    </div></a>
-                                    <div class="image">
-                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
