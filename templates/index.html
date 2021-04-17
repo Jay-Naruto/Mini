@@ -16,6 +16,8 @@ https://templatemo.com/tm-512-moonlight
         <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap-theme.min.css')}}">
         <link rel="stylesheet" href="{{url_for('static',filename='css/fontAwesome.css')}}">
         <link rel="stylesheet" href="{{url_for('static',filename='css/light-box.css')}}">
+
+        <link rel="stylesheet" href="{{url_for('static',filename='css/Table.css')}}">
         <link rel="stylesheet" href="{{url_for('static',filename='css/templatemo-main.css')}}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -100,7 +102,7 @@ https://templatemo.com/tm-512-moonlight
               <li><a href="#1"><i class="fa fa-home"></i> <em>Home</em></a></li>
             <li><a href="#2"><i class="fa fa-user"></i> <em>New Alert</em></a></li>
             <li><a href="#3"><i class="fa fa-pencil"></i> <em>Records</em></a></li>
-              <li><a href="#5"><i class="fa fa-image"></i> <em>Not Yet</em></a></li>
+              <li><a href="#4"><i class="fa fa-image"></i> <em>My profile</em></a></li>
 
           </ul>
         </nav>
@@ -128,7 +130,7 @@ https://templatemo.com/tm-512-moonlight
 
           <div class="slide" id="2">
             <div class="content fifth-content">
-       <form id="contact" method="POST" action="/index">
+       <form id="contact" method="POST" action="/index" enctype="multipart/form-data" >
                 <div class="container-fluid">
 
                     <div class="col-md-12">
@@ -244,21 +246,19 @@ https://templatemo.com/tm-512-moonlight
                          {% for stock in lst %}
                         <div class="col-md-4 col-sm-6">
                             <div class="item">
-                                <div class="thumb">
-                                    <a href="{{url_for('static',filename='img/view.jpg')}}" data-lightbox="image-1"><div class="hover-effect">
+                                <div class="thumb" style="width:100% !important; height:30% !important">
+                                    <a href={{stock.Image}}   data-lightbox="image-1"><div class="hover-effect">
                                         <div class="hover-content">
                                             <h2>{{stock.FullName}}</h2>
                                             <p>Age:{{stock.Age}} </p>
                                             <p>Height:{{stock.Height}}</p>
-                                            <p>City:{{stock.State}}</p>
+                                            <p>City:{{ stock.State }}</p>
                                             <p>State:{{stock.State}}</p>
                                             <p>Contact:{{stock.MobileNo}}</p>
-
-
                                         </div>
                                     </div></a>
-                                    <div class="image">
-                                        <img src="{{url_for('static',filename='img/view.jpg')}}">
+                                    <div class="image" >
+                                        <img src={{stock.Image}}>
                                     </div>
                                 </div>
                             </div>
@@ -267,6 +267,46 @@ https://templatemo.com/tm-512-moonlight
 
                     </div>
                 </div>
+            </div>
+          </div>
+
+
+            <div class="slide" id="4">
+            <div class="content fifth-content">
+              <div class="container-fluid">
+                  <div class="col-md-3">
+                      <div class="author-image"><img src="{{url_for('static',filename='img/author.jfif')}}" alt="Author Image"></div>
+
+                  </div>
+
+                  <div class="col-md-9 profileInfo">
+                      <h2 style="color:white;" >{{fullname_m}}</h2>
+                      <h4 style="color:white">Email:{{Email_m}}</h4>
+                      <h4 style="color:white">Contact:{{Mobile_m}}</h4>
+
+                  </div>
+
+
+              </div>
+                <hr style="color:white">
+                 <h3 style="color:white">Your Records</h3>
+                <div class="col-md-12" >
+                        <div class="row">
+                            <table class="container col-md-12">
+                            <tbody>
+                            <tr style="color:white ;"><th class="col-md-1" >FullName</th><th class="col-md-1">Last Seen On</th><th class="col-md-1">City</th><th class="col-md-1"></th><th class="col-md-1"></th></tr>
+                                  {% for stock in lst3 %}
+
+                                  <tr id="rowinfo">
+                                    <td class="col-md-1">{{stock.FullName}}</td><td class="col-md-1">{{stock.DOB}}</td><td class="col-md-1">{{stock.City}}</td><td><a  class="col-md-1" href="#">Edit</a></td><td><a  class="col-md-1" href="#">Delete</a></td></tr>
+                                  </tr>
+                            {% endfor %}
+                            </tbody>
+                    </table>
+                    </div>
+                    </div>
+
+
             </div>
           </div>
 
