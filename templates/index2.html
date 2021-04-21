@@ -1,0 +1,215 @@
+   <!DOCTYPE html>
+   <html xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>KHOJ</title>
+<!--
+Moonlight Template
+https://templatemo.com/tm-512-moonlight
+-->
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap-theme.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/fontAwesome.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/light-box.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/Delete.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/Table.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/templatemo-main.css')}}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+        <script src="{{url_for('static',filename='js/cities.js')}}"></script>
+        <script src="{{url_for('static',filename='js/vendor/modernizr-2.8.3-respond-1.4.2.min.js')}}"></script>
+<style>
+    .marginTOP
+    {
+    margin-top:25px;
+    }
+    .marginTOP2
+    {
+    margin-top:54px;
+    }
+
+    input[type="radio"] {
+    -ms-transform: scale(0.4); /* IE 9 */
+    -webkit-transform: scale(0.4); /* Chrome, Safari, Opera */
+    transform: scale(0s.5);
+
+}
+}
+
+</style>
+        <script>
+
+
+
+         document.getElementById('dateofbirth').value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+}
+
+             var down = document.getElementById('dateofbirth');
+
+        function gfg() {
+            var date =
+                document.getElementById('date').value;
+
+            var inpDate = new Date(date);
+            var currDate = new Date();
+
+            if(inpDate.setHours(0, 0, 0, 0) ==
+                      currDate.setHours(0, 0, 0, 0))
+            {
+                down.innerHTML =
+                    "The input date is today's date";
+            }
+            else {
+                down.innerHTML = "The input date is"
+                    + " different from today's date";
+            }
+        }
+
+        </script>
+    </head>
+
+<body>
+
+    <div class="sequence">
+
+      <div class="seq-preloader">
+        <svg width="39" height="16" viewBox="0 0 39 16" xmlns="http://www.w3.org/2000/svg" class="seq-preload-indicator"><g fill="#F96D38"><path class="seq-preload-circle seq-preload-circle-1" d="M3.999 12.012c2.209 0 3.999-1.791 3.999-3.999s-1.79-3.999-3.999-3.999-3.999 1.791-3.999 3.999 1.79 3.999 3.999 3.999z"/><path class="seq-preload-circle seq-preload-circle-2" d="M15.996 13.468c3.018 0 5.465-2.447 5.465-5.466 0-3.018-2.447-5.465-5.465-5.465-3.019 0-5.466 2.447-5.466 5.465 0 3.019 2.447 5.466 5.466 5.466z"/><path class="seq-preload-circle seq-preload-circle-3" d="M31.322 15.334c4.049 0 7.332-3.282 7.332-7.332 0-4.049-3.282-7.332-7.332-7.332s-7.332 3.283-7.332 7.332c0 4.05 3.283 7.332 7.332 7.332z"/></g></svg>
+      </div>
+
+    </div>
+
+
+        <nav>
+
+          <ul>
+
+              <li><a href="#4"><i class="fa fa-image"></i> <em>My profile</em></a></li>
+
+          </ul>
+        </nav>
+
+        <div class="slides">
+            <div class="slide" id="4">
+            <div class="content fifth-content">
+              <div class="container-fluid">
+                  <div class="col-md-3">
+                      <div class="author-image"><img src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png" alt="Author Image"></div>
+
+                  </div>
+
+                  <div class="col-md-9 profileInfo">
+                      <h2 style="color:white;" >{{fullname_m}}</h2>
+                      <h4 style="color:white">Email:{{Email_m}}</h4>
+                      <h4 style="color:white">Contact:{{Mobile_m}}</h4>
+
+                  </div>
+
+
+              </div>
+                <hr style="color:white">
+                 <h3 style="color:white">Deleted Records</h3>
+                <div class="delete__field" >
+                <form method="post" action="/index2">
+
+                    <div class="delete__field" >
+                <input type="text" name="Delete">
+                <button class="btn" style="height:40px !important"> Delete & View</button>
+                        <a href="#" >Go back</a>
+
+                </div>
+                </form>
+                    <h5 class="color:white !important" >You may view your deleted records after submitting!</h5>
+
+
+                </div>
+
+                <div class="col-md-12" >
+                        <div class="row">
+                            <table class="container col-md-12">
+                            <tbody>
+                            <tr><th class="col-md-1" >FullName</th><th class="col-md-1">Last Seen On</th><th class="col-md-1">City</th><th class="col-md-1"></th><th class="col-md-1"></th></tr>
+                                  {% for stock in lst3 %}
+
+                                  <tr id="rowinfo">
+                                    <td class="col-md-1">{{stock.FullName}}</td><td class="col-md-1">{{stock.DOB}}</td><td class="col-md-1">{{stock.City}}</td><td><a  class="col-md-1" href="#">Edit</a></td><td><a  class="col-md-1" href="#">Delete</a></td></tr>
+                                  </tr>
+                            {% endfor %}
+                            </tbody>
+                    </table>
+                    </div>
+                    </div>
+
+
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="footer">
+          <div class="content">
+
+          </div>
+        </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{{url_for('static',filename='js/vendor/jquery-1.11.2.min.js')}}"><\/script>')</script>
+
+    <script src="{{url_for('static',filename='js/vendor/bootstrap.min.js')}}"></script>
+
+    <script src="{{url_for('static',filename='js/datepicker.js')}}"></script>
+    <script src="{{url_for('static',filename='js/plugins.js')}}"></script>
+    <script src="{{url_for('static',filename='js/main.js')}}"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+
+
+        // navigation click actions
+        $('.scroll-link').on('click', function(event){
+            event.preventDefault();
+            var sectionID = $(this).attr("data-id");
+            scrollToID('#' + sectionID, 750);
+        });
+        // scroll to top action
+        $('.scroll-top').on('click', function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop:0}, 'slow');
+        });
+        // mobile nav toggle
+        $('#nav-toggle').on('click', function (event) {
+            event.preventDefault();
+            $('#main-nav').toggleClass("open");
+        });
+    });
+    // scroll function
+    function scrollToID(id, speed){
+        var offSet = 0;
+        var targetOffset = $(id).offset().top - offSet;
+        var mainNav = $('#main-nav');
+        $('html,body').animate({scrollTop:targetOffset}, speed);
+        if (mainNav.hasClass("open")) {
+            mainNav.css("height", "1px").removeClass("in").addClass("collapse");
+            mainNav.removeClass("open");
+        }
+    }
+    if (typeof console === "undefined") {
+        console = {
+            log: function() { }
+        };
+    }
+}
+
+    </script>
+</body>
+</html>

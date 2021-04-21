@@ -34,7 +34,6 @@ lst2 = []
 fullname_m=''
 Email_m=''
 Mobile_m=''
-
 email_t=""
 
 
@@ -76,6 +75,8 @@ def print2():
 
         PA = str(request.form.get('Confirm'))
 
+
+
         try:
 
             xd = authe.create_user_with_email_and_password(email_first, PA)
@@ -88,6 +89,7 @@ def print2():
                 "Email": email_first,
                 "Mobile": request.form.get('Mobile'),
                 "Password": request.form.get('Confirm'),
+                "Pincode": request.form.get('PincodeSignup')
             }
             db.child("Users").child(str(request.form.get('Mobile'))).set(data3)
         except:
@@ -174,16 +176,18 @@ def print4():
 
 
 
-            db.child("Alert").child(str(request.form.get('MobileNo'))).set(data2)
+            db.child("Alert").child(str(request.form.get('fname'))).set(data2)
 
-            mail_func(request.form.get('email'),
-                      (request.form.get('fname')
-                       + "\n" + request.form.get('MobileNo')
-                       + "\n" + request.form.get('stt')
-                       + "\n" + request.form.get('optradio')))
+
             users = db.child('Alert').order_by_child('FullName').get()
-            # profile = db.child('Users').order_by_child('FullName').get()
-
+            profile = db.child('Users').order_by_child('FullName').get()
+            for email in profile.each():
+                if(email.val()['Pincode']==request.form.get('Pincode')):
+                    mail_func(email.val()["Email"],
+                              (request.form.get('fname')
+                               + "\n" + request.form.get('MobileNo')
+                               + "\n" + request.form.get('stt')
+                               + "\n" + request.form.get('optradio')))
             for user in users.each():
                 if (user.val()['FullName']):
                     lst2.append({"FullName": user.val()['FullName'],
@@ -202,6 +206,10 @@ def print4():
                                  "City": records.val()['City'],
 
                                  })
+            # for user in users.each():
+
+
+            #db.child("Alert").child(request.form.get('Delete')).remove()
             # for profile in profile.each():
             #     if (profile.val()['Email'] == email_t):
             #         fullname_m = profile.val()['FullName']
@@ -215,6 +223,28 @@ def print4():
     return render_template('index.html', params=params)
 
 
+@app.route("/index2", methods=['GET', 'POST'])
+def print5():
+    if request.method == 'POST':
+        lst3=[]
+        try:
+
+
+            db.child("Alert").child(request.form.get('Delete')).remove()
+            users = db.child('Alert').order_by_child('FullName').get()
+            for records in users.each():
+                if (records.val()['Email'] == email_t):
+                    lst3.append({"FullName": records.val()['FullName'],
+                                 "DOB": records.val()['DOB'],
+                                 "City": records.val()['City'],
+
+                                 })
+
+
+            return render_template('index2.html', params=params,lst3=lst3,fullname_m=fullname_m ,Email_m=Email_m, Mobile_m=Mobile_m)
+        except:
+            return render_template('Error.html', params=params)
+    return render_template('index2.html', params=params)
 if __name__ == "__main__":
     app.secret_key = 'some secret key'
     app.run(debug=True)
