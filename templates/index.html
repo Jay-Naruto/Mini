@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>KHOJ</title>
-<!-- 
-Moonlight Template 
+<!--
+Moonlight Template
 https://templatemo.com/tm-512-moonlight
 -->
         <meta name="description" content="">
@@ -16,7 +16,7 @@ https://templatemo.com/tm-512-moonlight
         <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap-theme.min.css')}}">
         <link rel="stylesheet" href="{{url_for('static',filename='css/fontAwesome.css')}}">
         <link rel="stylesheet" href="{{url_for('static',filename='css/light-box.css')}}">
-
+        <link rel="stylesheet" href="{{url_for('static',filename='css/Delete.css')}}">
         <link rel="stylesheet" href="{{url_for('static',filename='css/Table.css')}}">
         <link rel="stylesheet" href="{{url_for('static',filename='css/templatemo-main.css')}}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -78,16 +78,16 @@ https://templatemo.com/tm-512-moonlight
     </head>
 
 <body>
-    
+
     <div class="sequence">
-  
+
       <div class="seq-preloader">
         <svg width="39" height="16" viewBox="0 0 39 16" xmlns="http://www.w3.org/2000/svg" class="seq-preload-indicator"><g fill="#F96D38"><path class="seq-preload-circle seq-preload-circle-1" d="M3.999 12.012c2.209 0 3.999-1.791 3.999-3.999s-1.79-3.999-3.999-3.999-3.999 1.791-3.999 3.999 1.79 3.999 3.999 3.999z"/><path class="seq-preload-circle seq-preload-circle-2" d="M15.996 13.468c3.018 0 5.465-2.447 5.465-5.466 0-3.018-2.447-5.465-5.465-5.465-3.019 0-5.466 2.447-5.466 5.465 0 3.019 2.447 5.466 5.466 5.466z"/><path class="seq-preload-circle seq-preload-circle-3" d="M31.322 15.334c4.049 0 7.332-3.282 7.332-7.332 0-4.049-3.282-7.332-7.332-7.332s-7.332 3.283-7.332 7.332c0 4.05 3.283 7.332 7.332 7.332z"/></g></svg>
       </div>
-      
+
     </div>
-    
-  
+
+
         <nav>
 
           <ul>
@@ -106,7 +106,7 @@ https://templatemo.com/tm-512-moonlight
 
           </ul>
         </nav>
-        
+
         <div class="slides">
           <div class="slide" id="1">
             <div class="content first-content">
@@ -246,7 +246,7 @@ https://templatemo.com/tm-512-moonlight
                          {% for stock in lst %}
                         <div class="col-md-4 col-sm-6">
                             <div class="item">
-                                <div class="thumb" style="width:100% !important; height:30% !important">
+                                <div class="thumb" style="width:100% !important; height:30% !important;object-fit: contain !important">
                                     <a href={{stock.Image}}   data-lightbox="image-1"><div class="hover-effect">
                                         <div class="hover-content">
                                             <h2>{{stock.FullName}}</h2>
@@ -258,7 +258,7 @@ https://templatemo.com/tm-512-moonlight
                                         </div>
                                     </div></a>
                                     <div class="image" >
-                                        <img src={{stock.Image}}>
+                                        <img src={{stock.Image}} width="400" height="200" >
                                     </div>
                                 </div>
                             </div>
@@ -290,11 +290,16 @@ https://templatemo.com/tm-512-moonlight
               </div>
                 <hr style="color:white">
                  <h3 style="color:white">Your Records</h3>
+                <div class="delete__field" >
+                    <input type="text">
+                <button  style="height:40px !important">Delete</button>
+                </div>
+
                 <div class="col-md-12" >
                         <div class="row">
                             <table class="container col-md-12">
                             <tbody>
-                            <tr style="color:white ;"><th class="col-md-1" >FullName</th><th class="col-md-1">Last Seen On</th><th class="col-md-1">City</th><th class="col-md-1"></th><th class="col-md-1"></th></tr>
+                            <tr><th class="col-md-1" >FullName</th><th class="col-md-1">Last Seen On</th><th class="col-md-1">City</th><th class="col-md-1"></th><th class="col-md-1"></th></tr>
                                   {% for stock in lst3 %}
 
                                   <tr id="rowinfo">
@@ -318,12 +323,12 @@ https://templatemo.com/tm-512-moonlight
 
           </div>
         </div>
- 
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="{{url_for('static',filename='js/vendor/jquery-1.11.2.min.js')}}"><\/script>')</script>
 
     <script src="{{url_for('static',filename='js/vendor/bootstrap.min.js')}}"></script>
-    
+
     <script src="{{url_for('static',filename='js/datepicker.js')}}"></script>
     <script src="{{url_for('static',filename='js/plugins.js')}}"></script>
     <script src="{{url_for('static',filename='js/main.js')}}"></script>
@@ -331,9 +336,9 @@ https://templatemo.com/tm-512-moonlight
     <script type="text/javascript">
     $(document).ready(function() {
 
-        
 
-        // navigation click actions 
+
+        // navigation click actions
         $('.scroll-link').on('click', function(event){
             event.preventDefault();
             var sectionID = $(this).attr("data-id");
@@ -342,7 +347,7 @@ https://templatemo.com/tm-512-moonlight
         // scroll to top action
         $('.scroll-top').on('click', function(event) {
             event.preventDefault();
-            $('html, body').animate({scrollTop:0}, 'slow');         
+            $('html, body').animate({scrollTop:0}, 'slow');
         });
         // mobile nav toggle
         $('#nav-toggle').on('click', function (event) {

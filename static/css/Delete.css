@@ -1,0 +1,9 @@
+.delete__field{
+display:flex;
+flex-direction:row;
+}
+
+.delete__field > button {
+height:40px !important;
+
+}

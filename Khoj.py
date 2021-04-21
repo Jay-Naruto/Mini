@@ -25,13 +25,17 @@ config = {
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 authe = firebase.auth()
-storage=firebase.storage()
+storage = firebase.storage()
 
 var = randint(100000, 999999)
 email_first = ""
 gmobile = ""
 lst2 = []
-lst3=[]
+fullname_m=''
+Email_m=''
+Mobile_m=''
+
+email_t=""
 
 
 def mail_func(rec, msg):
@@ -96,7 +100,11 @@ def print2():
 def print3():
     if request.method == 'POST':
         lst = []
-        global lst3
+        lst3=[]
+        global email_t
+        global fullname_m
+        global Email_m
+        global Mobile_m
 
         email_t = str(request.form.get('loginemail'))
         password_t = str(request.form.get('loginpass'))
@@ -122,17 +130,16 @@ def print3():
                     Email_m = profile.val()['Email']
                     Mobile_m = profile.val()['Mobile']
 
-
-
-            for records in  users.each():
+            for records in users.each():
                 if (records.val()['Email'] == email_t):
-                 lst3.append({"FullName": records.val()['FullName'],
-                 "DOB": records.val()['DOB'],
-                 "City": records.val()['City'],
+                    lst3.append({"FullName": records.val()['FullName'],
+                                 "DOB": records.val()['DOB'],
+                                 "City": records.val()['City'],
 
-                              })
+                                 })
 
-            return render_template('index.html', params=params, lst=lst,lst3=lst3,fullname_m=fullname_m,Email_m=Email_m,Mobile_m=Mobile_m)
+            return render_template('index.html', params=params, lst=lst, lst3=lst3, fullname_m=fullname_m,
+                                   Email_m=Email_m, Mobile_m=Mobile_m)
         except:
             return render_template('Error.html', params=params)
 
@@ -143,13 +150,15 @@ def print3():
 def print4():
     if request.method == 'POST':
         global lst2
+        lst3=[]
         f = request.files['file']
         f.save(f.filename)
         filename = secure_filename(f.filename)
         new_path = os.path.abspath(filename)
         print(new_path)
         storage.child(request.form.get('MobileNo')).put(f.filename)
-        fileURL=storage.child(request.form.get('MobileNo')).get_url(None)
+
+        fileURL = storage.child(request.form.get('MobileNo')).get_url(None)
         data2 = {
             "FullName": request.form.get('fname'),
             "Email": request.form.get('email'),
@@ -161,7 +170,12 @@ def print4():
             "Image": fileURL
         }
         try:
+
+
+
+
             db.child("Alert").child(str(request.form.get('MobileNo'))).set(data2)
+
             mail_func(request.form.get('email'),
                       (request.form.get('fname')
                        + "\n" + request.form.get('MobileNo')
@@ -180,14 +194,21 @@ def print4():
                                  "MobileNo": user.val()['MobileNo'],
                                  "Image": user.val()['Image'],
                                  })
+
+            for records in users.each():
+                if (records.val()['Email'] == email_t):
+                    lst3.append({"FullName": records.val()['FullName'],
+                                 "DOB": records.val()['DOB'],
+                                 "City": records.val()['City'],
+
+                                 })
             # for profile in profile.each():
-            #     if (profile.val()['FullName']):
-            #         lst3.append({"FullName": profile.val()['FullName'],
-            #                      "Mobile": profile.val()['Mobile'],
-            #                      "Email": profile.val()['Email'],
-            #
-            #                      })
-            return render_template('index.html', params=params, lst=lst2,fileURL=fileURL)
+            #     if (profile.val()['Email'] == email_t):
+            #         fullname_m = profile.val()['FullName']
+            #         Email_m = profile.val()['Email']
+            #         Mobile_m = profile.val()['Mobile']
+
+            return render_template('index.html', params=params, lst=lst2,lst3=lst3, fileURL=fileURL,fullname_m=fullname_m ,Email_m=Email_m, Mobile_m=Mobile_m)
         except:
             return render_template('Error.html', params=params)
 
