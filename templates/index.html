@@ -18,6 +18,7 @@ https://templatemo.com/tm-512-moonlight
         <link rel="stylesheet" href="{{url_for('static',filename='css/light-box.css')}}">
         <link rel="stylesheet" href="{{url_for('static',filename='css/Delete.css')}}">
         <link rel="stylesheet" href="{{url_for('static',filename='css/Table.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/Registration.css')}}">
         <link rel="stylesheet" href="{{url_for('static',filename='css/templatemo-main.css')}}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -79,6 +80,13 @@ https://templatemo.com/tm-512-moonlight
 
 <body>
 
+<!--<script SameSite="None; Secure" src="https://static.landbot.io/landbot-3/landbot-3.0.0.js"></script>-->
+<!--<script>-->
+<!--  var myLandbot = new Landbot.Livechat({-->
+<!--    configUrl: 'https://chats.landbot.io/v3/H-886333-3Q4I2ZH6376QAUES/index.json',-->
+<!--  });-->
+<!--</script>-->
+
     <div class="sequence">
 
       <div class="seq-preloader">
@@ -91,12 +99,6 @@ https://templatemo.com/tm-512-moonlight
         <nav>
 
           <ul>
-           <!-- <li><a href="#1"><i class="fa fa-home"></i> <em>Home</em></a></li>
-            <li><a href="#3"><i class="fa fa-pencil"></i> <em>New Alert</em></a></li>
-            <li><a href="#4"><i class="fa fa-image"></i> <em>Records</em></a></li>
-               <li><a href="#2"><i class="fa fa-user"></i> <em>Contact ks</em></a></li>
-               -->
-
 
 
               <li><a href="#1"><i class="fa fa-home"></i> <em>Home</em></a></li>
@@ -136,8 +138,10 @@ https://templatemo.com/tm-512-moonlight
                     <div class="col-md-12">
                         <div class="row">
                           <div class="col-sm-6">
+                           <div class="registrationImg">
 
-                            <div class="row">
+
+                            <div class="row" >
 
                                 <div class="col-md-12">
                                      <h3 style="color:white;">Register</h3>
@@ -173,18 +177,8 @@ https://templatemo.com/tm-512-moonlight
                                           <input type="text" name="Pincode" placeholder="Pincode" pattern="[0-9]{6}" maxlength="6" title="Eg: 400087" required>
                                       </fieldset>
                                 </div>
-
-                            </div>
-
-                    </div>
-
-
-               <div class="col-md-12">
-
-                            <div class="row">
-
-                                <div class="col-md-6" style="align-items:flex-start; margin-top: 50px;">
-
+                                <div class="col-md-6" style="align-items:flex-start; margin-top: 25px;">
+                                <h5 style="color:white;=">Gender</h5>
                                     <form>
                                         <label title="Gender" class="radio-inline" style="color:white;">
                                           <input type="radio" name="optradio"   checked>Male
@@ -200,6 +194,19 @@ https://templatemo.com/tm-512-moonlight
 
 
                                 </div>
+
+                             </div>
+<!--                               <img class="ImgReg" src="{{url_for('static',filename='img/author_image.png')}}" >-->
+                           </div>
+
+                    </div>
+
+
+               <div class="col-md-12">
+
+                            <div class="row">
+
+
                                 <div class="col-sm-6 marginTOP">
 
                                   <fieldset>
@@ -234,6 +241,7 @@ https://templatemo.com/tm-512-moonlight
 
                 </div>
 </form>
+
             </div>
 
           </div>
@@ -276,7 +284,7 @@ https://templatemo.com/tm-512-moonlight
               <div class="container-fluid">
                   <div class="col-md-3">
                       <div class="author-image"><img src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png" alt="Author Image"></div>
-
+                        <button>Upload</button>
                   </div>
 
                   <div class="col-md-9 profileInfo">
@@ -299,11 +307,11 @@ https://templatemo.com/tm-512-moonlight
                         <div class="row">
                             <table class="container col-md-12">
                             <tbody>
-                            <tr><th class="col-md-1" >FullName</th><th class="col-md-1">Last Seen On</th><th class="col-md-1">City</th><th class="col-md-1"></th><th class="col-md-1"></th></tr>
+                            <tr><th class="col-md-1" >FullName</th><th class="col-md-1">Age</th><th class="col-md-1">Height</th><th class="col-md-1">City</th><th class="col-md-1">Last Seen On</th></tr>
                                   {% for stock in lst3 %}
 
                                   <tr id="rowinfo">
-                                    <td class="col-md-1">{{stock.FullName}}</td><td class="col-md-1">{{stock.DOB}}</td><td class="col-md-1">{{stock.City}}</td><td><a  class="col-md-1" href="#">Edit</a></td><td><a  class="col-md-1" href="#">Delete</a></td></tr>
+                                    <td class="col-md-1">{{stock.FullName}}</td><td class="col-md-1">{{stock.Age}}</td><td class="col-md-1">{{stock.Height}}</td><td class="col-md-1">{{stock.City}}</td><td class="col-md-1">{{stock.DOB}}</td></tr>
                                   </tr>
                             {% endfor %}
                             </tbody>

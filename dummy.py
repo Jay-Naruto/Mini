@@ -25,17 +25,16 @@ db = firebase.database()
 authe = firebase.auth()
 lst=[]
 users = db.child('Alert').order_by_child('FullName').get()
-for user in users.each():
-  if(user.val()['FullName']):
-                    # fullname_d = user.val()['FullName']
-                    # Age_d = user.val()['Age']
-                    # Height_d = user.val()['Height']
-                    # Pincode_d = user.val()['Pincode']
-                    # Shop_m = user.val()['Shop Name']
-                    lst.append({"FullName": user.val()['FullName'],
-                                "Age": user.val()['Age'], "Pincode": user.val()['Pincode'],
-                                })
-  print(lst)
+for records in users.each():
+    if (records.val()['Email'] == "jaynarutomistry@gmail.com"):
+        lst.append({"FullName": records.val()['FullName'],
+                     "DOB": records.val()['DOB'],
+                     "City": records.val()['City'],
+                     "Age": records.val()['Age'],
+                     "Height": records.val()['Height'],
+
+                     })
+print(lst)
 
 
 # for user in users.each():

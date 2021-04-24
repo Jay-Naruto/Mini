@@ -116,35 +116,25 @@ https://templatemo.com/tm-512-moonlight
 
               </div>
                 <hr style="color:white">
-                 <h3 style="color:white">Deleted Records</h3>
+
                 <div class="delete__field" >
-                <form method="post" action="/index2">
+                <form method="post">
 
                     <div class="delete__field" >
-                <input type="text" name="Delete">
-                <button class="btn" style="height:40px !important"> Delete & View</button>
-                        <a href="#" >Go back</a>
+                <input type="text" name="Delete" required>
+                <button class="btn" style="height:40px !important"> Delete</button>
+
 
                 </div>
                 </form>
-                    <h5 class="color:white !important" >You may view your deleted records after submitting!</h5>
+
 
 
                 </div>
 
                 <div class="col-md-12" >
                         <div class="row">
-                            <table class="container col-md-12">
-                            <tbody>
-                            <tr><th class="col-md-1" >FullName</th><th class="col-md-1">Last Seen On</th><th class="col-md-1">City</th><th class="col-md-1"></th><th class="col-md-1"></th></tr>
-                                  {% for stock in lst3 %}
 
-                                  <tr id="rowinfo">
-                                    <td class="col-md-1">{{stock.FullName}}</td><td class="col-md-1">{{stock.DOB}}</td><td class="col-md-1">{{stock.City}}</td><td><a  class="col-md-1" href="#">Edit</a></td><td><a  class="col-md-1" href="#">Delete</a></td></tr>
-                                  </tr>
-                            {% endfor %}
-                            </tbody>
-                    </table>
                     </div>
                     </div>
 

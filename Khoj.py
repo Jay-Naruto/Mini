@@ -3,6 +3,7 @@ import os
 import tempfile
 import params as params
 import pyrebase
+import requests
 from flask import Flask, render_template, request, flash
 import smtplib
 
@@ -36,6 +37,17 @@ Email_m=''
 Mobile_m=''
 email_t=""
 
+def get_msg(msg,rec):
+    rec=str(rec)
+    url = "https://www.fast2sms.com/dev/bulk"
+    payload = f"sender_id=FSTSMS&message={msg}&language=english&route=p&numbers={rec}"
+    headers = {
+        'authorization': "XOUhrtuT7xvfm8YiAc3qbQ4PeZg0NDjzSFLopKw51RWnkC9aJISzjBidwZu7a3W5JmQkcn8hXpyLfx9H",
+        'Content-Type': "application/x-www-form-urlencoded",
+        'Cache-Control': "no-cache",
+    }
+    response = requests.request("POST", url, data=payload, headers=headers)
+    print(response.text)
 
 def mail_func(rec, msg):
     sender = "khoj.alerts@gmail.com"
@@ -82,7 +94,7 @@ def print2():
             xd = authe.create_user_with_email_and_password(email_first, PA)
             print(xd)
 
-            # return render_template('index.html', params=params)
+
 
             data3 = {
                 "FullName": request.form.get('FullName'),
@@ -137,6 +149,8 @@ def print3():
                     lst3.append({"FullName": records.val()['FullName'],
                                  "DOB": records.val()['DOB'],
                                  "City": records.val()['City'],
+                                 "Age": records.val()['Age'],
+                                 "Height": records.val()['Height'],
 
                                  })
 
@@ -173,7 +187,9 @@ def print4():
         }
         try:
 
-
+            msg=f"MARS ALERT! \n Missing case in your area! \n " \
+                f"Name:{request.form.get('fname')} \n" \
+                f"Age:{request.form.get('Age')} \n Please check your email! "
 
 
             db.child("Alert").child(str(request.form.get('fname'))).set(data2)
@@ -183,11 +199,14 @@ def print4():
             profile = db.child('Users').order_by_child('FullName').get()
             for email in profile.each():
                 if(email.val()['Pincode']==request.form.get('Pincode')):
+                    # get_msg(msg, "8104635077")
                     mail_func(email.val()["Email"],
-                              (request.form.get('fname')
-                               + "\n" + request.form.get('MobileNo')
-                               + "\n" + request.form.get('stt')
-                               + "\n" + request.form.get('optradio')))
+                              ("Name:"+ request.form.get('fname')
+                               + "\n" +"Contact:"+ request.form.get('MobileNo')
+                               + "\n" +"State:"+ request.form.get('stt')
+                               + "\n" +"Gender:"+ request.form.get('optradio')
+                               + "\n" +"Image Link:"+ fileURL
+                               ))
             for user in users.each():
                 if (user.val()['FullName']):
                     lst2.append({"FullName": user.val()['FullName'],
@@ -204,17 +223,11 @@ def print4():
                     lst3.append({"FullName": records.val()['FullName'],
                                  "DOB": records.val()['DOB'],
                                  "City": records.val()['City'],
+                                 "Age": records.val()['Age'],
+                                 "Height": records.val()['Height'],
 
                                  })
-            # for user in users.each():
 
-
-            #db.child("Alert").child(request.form.get('Delete')).remove()
-            # for profile in profile.each():
-            #     if (profile.val()['Email'] == email_t):
-            #         fullname_m = profile.val()['FullName']
-            #         Email_m = profile.val()['Email']
-            #         Mobile_m = profile.val()['Mobile']
 
             return render_template('index.html', params=params, lst=lst2,lst3=lst3, fileURL=fileURL,fullname_m=fullname_m ,Email_m=Email_m, Mobile_m=Mobile_m)
         except:
@@ -227,6 +240,7 @@ def print4():
 def print5():
     if request.method == 'POST':
         lst3=[]
+        lst4=[]
         try:
 
 
@@ -237,18 +251,37 @@ def print5():
                     lst3.append({"FullName": records.val()['FullName'],
                                  "DOB": records.val()['DOB'],
                                  "City": records.val()['City'],
+                                 "Age": records.val()['Age'],
+                                 "Height": records.val()['Height'],
 
                                  })
 
+            profile = db.child('Users').order_by_child('FullName').get()
+            for email in profile.each():
+                if (email.val()['Pincode'] == request.form.get('Pincode')):
+                    mail_func(email.val()["Email"],
+                              (request.form.get('fname')
+                               + "\n" + request.form.get('MobileNo')
+                               + "\n" + request.form.get('stt')
+                               + "\n" + request.form.get('optradio')))
+            for user in users.each():
+                if (user.val()['FullName']):
+                    lst4.append({"FullName": user.val()['FullName'],
+                                 "Age": user.val()['Age'],
+                                 "Height": user.val()['Height'],
+                                 "City": user.val()['City'],
+                                 "State": user.val()['State'],
+                                 "MobileNo": user.val()['MobileNo'],
+                                 "Image": user.val()['Image'],
+                                 })
 
-            return render_template('index2.html', params=params,lst3=lst3,fullname_m=fullname_m ,Email_m=Email_m, Mobile_m=Mobile_m)
+
+
+            return render_template('index.html',params=params, lst=lst4,lst3=lst3,fullname_m=fullname_m ,Email_m=Email_m, Mobile_m=Mobile_m)
         except:
             return render_template('Error.html', params=params)
-    return render_template('index2.html', params=params)
+    return render_template('index2.html', params=params,fullname_m=fullname_m ,Email_m=Email_m, Mobile_m=Mobile_m)
 if __name__ == "__main__":
     app.secret_key = 'some secret key'
     app.run(debug=True)
-# mysqlclient @ file:///C:/Users/LENOVO/Downloads/mysqlclient-1.4.6-cp39-cp39-win_amd64.whl
 
-
-#  @message_api.route('/messenger/message/send/picture/individual', methods=['post'])
