@@ -1,41 +1,25 @@
-from random import randint
+import pytesseract
+from PIL import Image
+import datetime
+from cv2 import cv2
+import sys
 import os
-import tempfile
-import params as params
-import pyrebase
-from flask import Flask, render_template, request, flash
-import smtplib
+import os.path
+import re
+from pyzbar.pyzbar import decode
 
-# hello
-# hhn
-app = Flask(__name__, template_folder='templates')
+from dummy3 import AadhaarSecureQr
 
-config = {
-    "apiKey": "AIzaSyD8Uy9tJWNoRUEf7zo1212rD1cA20OKb80",
-    "authDomain": "mars-c7bdc.firebaseapp.com",
-    "databaseURL": "https://mars-c7bdc-default-rtdb.firebaseio.com",
-    "projectId": "mars-c7bdc",
-    "storageBucket": "mars-c7bdc.appspot.com",
-    "messagingSenderId": "118583428832",
-    "appId": "1:118583428832:web:7643daf17eb2de5d72b285",
-    "measurementId": "G-9RK6Y1NT4L"
-}
-firebase = pyrebase.initialize_app(config)
-db = firebase.database()
-authe = firebase.auth()
-lst=[]
-users = db.child('Alert').order_by_child('FullName').get()
-for records in users.each():
-    if (records.val()['Email'] == "jaynarutomistry@gmail.com"):
-        lst.append({"FullName": records.val()['FullName'],
-                     "DOB": records.val()['DOB'],
-                     "City": records.val()['City'],
-                     "Age": records.val()['Age'],
-                     "Height": records.val()['Height'],
+try:
+            img = cv2.imread('Adhaar5.jpg')
+            for barcode in decode(img):
+                x = barcode.data
+            obj = AadhaarSecureQr(int(x.decode(encoding='UTF-8')))
+            data = obj.decodeddata()
+            name = data["name"]
+            g = data["gender"]
+            digit = data["adhaar_last_4_digit"]
+            x = {"name": name, "g": g, "digi": digit}
 
-                     })
-print(lst)
-
-
-# for user in users.each():
-#     print(user.val())
+except:
+            print("Not valid")
