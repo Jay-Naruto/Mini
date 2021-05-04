@@ -188,7 +188,7 @@ def print4():
         try:
 
             msg=f"MARS ALERT! \n Missing case in your area! \n " \
-                f"Name:{request.form.get('fname')} \n" \
+                f"Name:{request.form.get('fname')} \n " \
                 f"Age:{request.form.get('Age')} \n Please check your email! "
 
 
@@ -199,7 +199,7 @@ def print4():
             profile = db.child('Users').order_by_child('FullName').get()
             for email in profile.each():
                 if(email.val()['Pincode']==request.form.get('Pincode')):
-                    # get_msg(msg, "8104635077")
+                    get_msg(msg,email.val()['Mobile'])
                     mail_func(email.val()["Email"],
                               ("Name:"+ request.form.get('fname')
                                + "\n" +"Contact:"+ request.form.get('MobileNo')
