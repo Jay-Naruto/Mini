@@ -1,11 +1,10 @@
 .delete__field{
 display:flex;
 flex-direction:row;
-   justify-content: center !important;
-    align-items: center !important;
+justify-content: center !important;
 }
 
-.delete__field > button {
-height:40px !important;
+.delete__field__btn {
+
 
 }

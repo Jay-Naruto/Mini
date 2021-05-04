@@ -106,7 +106,15 @@ https://templatemo.com/tm-512-moonlight
             <li><a href="#3"><i class="fa fa-pencil"></i> <em>Records</em></a></li>
               <li><a href="#4"><i class="fa fa-image"></i> <em>My profile</em></a></li>
 
+
           </ul>
+            <form action="/">
+
+                <button style="margin-top:60px,width:150px,height:60px,color:black !important">&laquo; Back to login</button>
+
+
+            </form>
+
         </nav>
 
         <div class="slides">
@@ -179,15 +187,15 @@ https://templatemo.com/tm-512-moonlight
                                 </div>
                                 <div class="col-md-6" style="align-items:flex-start; margin-top: 25px;">
                                 <h5 style="color:white;=">Gender</h5>
-                                    <form>
+                                    <form method="post">
                                         <label title="Gender" class="radio-inline" style="color:white;">
-                                          <input type="radio" name="optradio"   checked>Male
+                                          <input type="radio" value="1" name="optradio"   >Male
                                         </label>
                                         <label class="radio-inline" style="color:white;">
-                                          <input type="radio" name="optradio"  >Female
+                                          <input type="radio" value="2" name="optradio"  >Female
                                         </label>
                                         <label class="radio-inline" style="color:white;">
-                                          <input type="radio" name="optradio" >Others
+                                          <input type="radio" value="3" name="optradio" >Others
                                         </label>
                                       </form><br>
 
@@ -311,7 +319,11 @@ https://templatemo.com/tm-512-moonlight
                                   {% for stock in lst3 %}
 
                                   <tr id="rowinfo">
-                                    <td class="col-md-1">{{stock.FullName}}</td><td class="col-md-1">{{stock.Age}}</td><td class="col-md-1">{{stock.Height}}</td><td class="col-md-1">{{stock.City}}</td><td class="col-md-1">{{stock.DOB}}</td></tr>
+                                      <td style="color:white !important" class="col-md-1">{{stock.FullName}}</td>
+                                      <td style="color:white !important" class="col-md-1">{{stock.Age}}</td>
+                                      <td style="color:white !important" class="col-md-1">{{stock.Height}}</td>
+                                      <td style="color:white !important" class="col-md-1">{{stock.City}}</td>
+                                      <td style="color:white !important" class="col-md-1">{{stock.DOB}}</td></tr>
                                   </tr>
                             {% endfor %}
                             </tbody>
