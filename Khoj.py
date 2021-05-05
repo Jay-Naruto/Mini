@@ -201,7 +201,7 @@ def print4():
                 if(email.val()['Pincode']==request.form.get('Pincode')):
                     get_msg(msg,email.val()['Mobile'])
                     mail_func(email.val()["Email"],
-                              ("Name:"+ request.form.get('fname')
+                              ("\n"+"Name:"+ request.form.get('fname')
                                + "\n" +"Contact:"+ request.form.get('MobileNo')
                                + "\n" +"State:"+ request.form.get('stt')
                                + "\n" +"Gender:"+ request.form.get('optradio')
